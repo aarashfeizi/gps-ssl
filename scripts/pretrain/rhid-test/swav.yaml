@@ -1,0 +1,57 @@
+defaults:
+  - _self_
+  - augmentations: symmetric.yaml
+  - wandb: private.yaml
+  - override hydra/hydra_logging: disabled
+  - override hydra/job_logging: disabled
+
+# disable hydra outputs
+hydra:
+  output_subdir: null
+  run:
+    dir: .
+
+name: "swav-rhid-test" # change here for cifar10
+method: "swav"
+backbone:
+  name: "resnet18"
+method_kwargs:
+  proj_hidden_dim: 2048
+  queue_size: 3840
+  proj_output_dim: 128
+  num_prototypes: 3000
+  epoch_queue_starts: 50
+  freeze_prototypes_epochs: 2
+  temperature: 0.1
+data:
+  dataset: rhid-test
+  train_path: "../rhid-2021_maxEdge500_restructured/trainval"
+  val_path: "../rhid-2021_maxEdge500_restructured/test1"
+  format: "image_folder"
+  num_workers: 10
+optimizer:
+  name: "lars"
+  batch_size: 256
+  lr: 0.6
+  classifier_lr: 0.1
+  weight_decay: 1e-6
+  kwargs:
+    clip_lr: True
+    eta: 0.02
+    exclude_bias_n_norm: True
+scheduler:
+  name: "warmup_cosine"
+checkpoint_config:
+  enabled: True
+  dir: "../scratch/ht-image-ssl/trained_models"
+  frequency: 1
+auto_resume:
+  enabled: True
+
+# overwrite PL stuff
+max_epochs: 100
+devices: [0]
+sync_batchnorm: True
+accelerator: "gpu"
+strategy: "ddp"
+precision: 16

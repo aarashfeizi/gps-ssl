@@ -1,0 +1,4 @@
+enabled: True
+entity: WANDB_USERNAME
+project: "ht-image-ssl"
+save_dir: "../../scratch/ht-image-ssl/wandb/"
