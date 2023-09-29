@@ -1,5 +1,5 @@
-# Guided Nearest Neighbor Contrastive Learning with Prior Knowledge For Hotel Recognition
-Repository for the "Guided Nearest Neighbor Contrastive Learning with Prior Knowledge For Hotel Recognition" Paper, submitted to ICDM 2023.
+# GPS-SSL: Guided Positive Sampling to Inject Prior into Self-Supervised Learning
+Repository for the "GPS-SSL: Guided Positive Sampling to Inject Prior into Self-Supervised Learning" Paper, submitted to ICLR 2024.
 
 RHID (Revised HotelID-2021) can be downloaded from [here](google.com).
 
