@@ -16,7 +16,7 @@ name: "swav-rhid-val" # change here for cifar10
 method: "swav"
 log_path: "../scratch/ht-image-ssl/logs/"
 backbone:
-  name: "resnet18"
+  name: "resnet50"
 method_kwargs:
   proj_hidden_dim: 2048
   queue_size: 3840

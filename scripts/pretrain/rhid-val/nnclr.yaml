@@ -12,11 +12,11 @@ hydra:
   run:
     dir: .
 
-name: "nnclr-rhidV-gnnclr" # change here for inat
+name: "nnclr-rhidV-gps" # change here for inat
 method: "nnclr"
 log_path: "../../scratch/ht-image-ssl/logs/"
 backbone:
-  name: "resnet18"
+  name: "resnet50"
 method_kwargs:
   temperature: 0.2
   proj_hidden_dim: 2048

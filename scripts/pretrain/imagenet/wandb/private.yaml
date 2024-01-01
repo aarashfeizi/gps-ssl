@@ -1,3 +1,0 @@
-enabled: True
-entity: WANDB_USERNAME
-project: "ht-image-ssl"

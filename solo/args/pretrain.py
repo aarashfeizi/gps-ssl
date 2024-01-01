@@ -128,8 +128,8 @@ def add_and_assert_scheduler(cfg):
     return cfg
 
 
-def add_and_assert_gnnclr_cfg(cfg):
-    cfg.gnnclr = omegaconf_select(cfg, "gnnclr", False)
+def add_and_assert_gps_cfg(cfg):
+    cfg.gps = omegaconf_select(cfg, "gps", False)
     cfg.nn_key = omegaconf_select(cfg, "nn_key", 'feats')
     cfg.log_path = omegaconf_select(cfg, "log_path", '../../scratch/ht-image-ssl/logs/')
     cfg.data.num_nns = omegaconf_select(cfg, "data.num_nns", 1)
@@ -157,7 +157,7 @@ def add_and_assert_gnnclr_cfg(cfg):
     if not os.path.exists(cfg.log_path):
         os.makedirs(cfg.log_path)
 
-    if cfg.gnnclr:
+    if cfg.gps:
         cfg.emb_model = omegaconf_select(cfg, "emb_model", {})
         cfg.emb_model.name = omegaconf_select(cfg, "emb_model.name", "resnet50")
         cfg.emb_model.train = omegaconf_select(cfg, "emb_model.train", False)
@@ -206,7 +206,7 @@ def parse_cfg(cfg: omegaconf.DictConfig):
     # augmentations for calculating the nearest neighbors
     cfg.nn_augmentations = omegaconf_select(cfg, "nn_augmentations", 'no_transform')
     
-    cfg = add_and_assert_gnnclr_cfg(cfg)
+    cfg = add_and_assert_gps_cfg(cfg)
 
     cfg = add_and_assert_scheduler(cfg)
 
@@ -252,7 +252,7 @@ def parse_cfg(cfg: omegaconf.DictConfig):
         else:
             num_small_crops += pipeline.num_crops
     cfg.data.num_large_crops = num_large_crops
-    if cfg.gnnclr:
+    if cfg.gps:
         cfg.data.num_large_crops += cfg.data.num_nns
     cfg.data.num_small_crops = num_small_crops
 

@@ -1,4 +1,4 @@
-name: resnet18
+name: resnet50
 train: false
 epochs: 0
 loss: 'ce'

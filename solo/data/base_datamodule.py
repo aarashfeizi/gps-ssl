@@ -1,7 +1,7 @@
 import pytorch_lightning as pl
 import torch
 from solo.utils import misc
-from solo.data.gnnclr_dataset import GNNCLR_Dataset_Wrapper
+from solo.data.gps_dataset import GPS_Dataset_Wrapper
 from solo.data.pretrain_dataloader import prepare_dataloader
 import numpy as np
 
@@ -92,7 +92,7 @@ class BaseDataModule(pl.LightningDataModule):
             if self.clustering_algo.startswith('louvain'):
                 extra_info['no_clusters'] = len(set(clust_lbls))
 
-            train_dataset = GNNCLR_Dataset_Wrapper(dataset=self.train_loader.dataset.dataset,
+            train_dataset = GPS_Dataset_Wrapper(dataset=self.train_loader.dataset.dataset,
                                                    dataset_name=self.train_loader.dataset.dataset_name,
                                                    sim_matrix=emb_sim_matrix,
                                                    dist_matrix=emb_dist_matrix,

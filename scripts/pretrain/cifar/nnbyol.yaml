@@ -14,7 +14,7 @@ hydra:
 name: "nnbyol-cifar10" # change here for cifar100
 method: "nnbyol"
 backbone:
-  name: "resnet18"
+  name: "resnet50"
 method_kwargs:
   proj_hidden_dim: 4096
   pred_hidden_dim: 4096

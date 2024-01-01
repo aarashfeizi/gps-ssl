@@ -13,7 +13,7 @@ hydra:
 name: "vicreg-rhid-test" # change here for cifar10
 method: "vicreg"
 backbone:
-  name: "resnet18"
+  name: "resnet50"
 method_kwargs:
   proj_hidden_dim: 2048
   proj_output_dim: 2048

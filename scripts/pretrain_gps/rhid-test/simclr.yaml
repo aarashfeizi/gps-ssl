@@ -1,0 +1,58 @@
+defaults:
+  - _self_
+  - augmentations: reconstruction.yaml
+  - nn_augmentations: no_transform.yaml
+  - wandb: private.yaml
+  - emb_model: resnet50.yaml
+  - override hydra/hydra_logging: disabled
+  - override hydra/job_logging: disabled
+
+# disable hydra outputs
+hydra:
+  output_subdir: null
+  run:
+    dir: .
+
+name: "simclr-rhid-val" # change here for cifar10
+method: "simclr"
+gps: True
+log_path: "../scratch/ht-image-ssl/logs/"
+backbone:
+  name: "resnet50"
+method_kwargs:
+  proj_hidden_dim: 2048
+  proj_output_dim: 256
+  temperature: 0.2
+data:
+  dataset: rhid-val
+  train_path: "../scratch/rhid-2021_maxEdge500_restructured/trainval"
+  val_path: "../scratch/rhid-2021_maxEdge500_restructured/test1"
+  format: "image_folder"
+  num_workers: 10
+  num_nns_choice: 1
+optimizer:
+  name: "lars"
+  batch_size: 256
+  lr: 0.4
+  classifier_lr: 0.1
+  weight_decay: 1e-4
+  kwargs:
+    clip_lr: True
+    eta: 0.02
+    exclude_bias_n_norm: True
+scheduler:
+  name: "warmup_cosine"
+checkpoint_config:
+  enabled: False
+  dir: "../scratch/ht-image-ssl/trained_models"
+  frequency: 1
+auto_resume:
+  enabled: False
+
+# overwrite PL stuff
+max_epochs: 30
+devices: [0]
+sync_batchnorm: True
+accelerator: "gpu"
+strategy: "ddp"
+precision: 16

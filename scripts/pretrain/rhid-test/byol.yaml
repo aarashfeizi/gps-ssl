@@ -15,10 +15,10 @@ hydra:
 
 name: "byol-rhid-test" # change here for cifar10
 method: "byol"
-gnnclr: False
+gps: False
 log_path: "../scratch/ht-image-ssl/logs/"
 backbone:
-  name: "resnet18"
+  name: "resnet50"
 method_kwargs:
   proj_hidden_dim: 4096
   proj_output_dim: 256

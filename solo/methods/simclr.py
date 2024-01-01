@@ -51,8 +51,13 @@ class SimCLR(BaseMethod):
         # projector
         self.projector = nn.Sequential(
             nn.Linear(self.features_dim, proj_hidden_dim),
+            nn.BatchNorm1d(proj_hidden_dim),
+            nn.ReLU(),
+            nn.Linear(proj_hidden_dim, proj_hidden_dim),
+            nn.BatchNorm1d(proj_hidden_dim),
             nn.ReLU(),
             nn.Linear(proj_hidden_dim, proj_output_dim),
+            nn.BatchNorm1d(proj_output_dim),
         )
 
     @staticmethod
@@ -144,7 +149,7 @@ class SimCLR(BaseMethod):
         # ------- contrastive loss -------
         n_augs = self.num_large_crops + self.num_small_crops
         
-        if self.gnnclr:
+        if self.gps:
             indexes = indexes[0].repeat(n_augs)
         else:
             indexes = indexes.repeat(n_augs)

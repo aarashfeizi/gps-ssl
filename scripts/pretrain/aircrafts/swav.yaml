@@ -14,7 +14,7 @@ hydra:
 name: "swav-aircrafts" # change here for aircrafts
 method: "swav"
 backbone:
-  name: "resnet18"
+  name: "resnet50"
 method_kwargs:
   proj_hidden_dim: 2048
   queue_size: 3840

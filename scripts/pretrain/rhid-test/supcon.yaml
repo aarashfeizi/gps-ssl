@@ -15,7 +15,7 @@ hydra:
 name: "supcon-rhid-test" # change here for cifar10
 method: "supcon"
 backbone:
-  name: "resnet18"
+  name: "resnet50"
 method_kwargs:
   proj_hidden_dim: 2048
   proj_output_dim: 256

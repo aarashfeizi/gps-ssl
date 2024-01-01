@@ -13,7 +13,7 @@ hydra:
 name: "wmse-aircrafts" # change here for aircrafts
 method: "wmse"
 backbone:
-  name: "resnet18"
+  name: "resnet50"
 method_kwargs:
   proj_hidden_dim: 1024
   proj_output_dim: 64

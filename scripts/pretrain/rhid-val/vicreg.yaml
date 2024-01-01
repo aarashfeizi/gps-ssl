@@ -14,7 +14,7 @@ name: "vicreg-rhid-val" # change here for cifar10
 method: "vicreg"
 log_path: "../scratch/ht-image-ssl/logs/"
 backbone:
-  name: "resnet18"
+  name: "resnet50"
 method_kwargs:
   proj_hidden_dim: 2048
   proj_output_dim: 2048

@@ -207,7 +207,7 @@ class NNCLR(BaseMethod):
         )
 
         # compute nn accuracy
-        if self.gnnclr:
+        if self.gps:
             b = targets[0].size(0)
             nn_acc = (targets[0] == self.queue_y[idx1]).sum() / b
             # dequeue and enqueue    

@@ -259,7 +259,7 @@ class BaseMethod(pl.LightningModule):
         self.num_crops: int = self.num_large_crops + self.num_small_crops
         # turn on multicrop if there are small crops
         self.multicrop: bool = self.num_small_crops != 0
-        self.gnnclr: bool = cfg.gnnclr
+        self.gps: bool = cfg.gps
 
         # knn online evaluation
         self.knn_eval: bool = cfg.knn_eval.enabled
@@ -545,7 +545,7 @@ class BaseMethod(pl.LightningModule):
         X = [X] if isinstance(X, torch.Tensor) else X
 
         # check that we received the desired number of crops
-        if not self.gnnclr:
+        if not self.gps:
             assert len(X) == self.num_crops
             outs = [self.base_training_step(x, targets) for x in X[: self.num_large_crops]]
         else:
@@ -560,10 +560,10 @@ class BaseMethod(pl.LightningModule):
             for k in multicrop_outs[0].keys():
                 outs[k] = outs.get(k, []) + [out[k] for out in multicrop_outs]
 
-        # if self.gnnclr:
-        #     outs['gnnclr'] = self.gnnclr_forward(X) for x in X[self.num_large_crops :]]
-        #     for k in gnnclr_outs[0].keys():
-        #         outs[k] = outs.get(k, []) + [out[k] for out in gnnclr_outs]
+        # if self.gps:
+        #     outs['gps'] = self.gps_forward(X) for x in X[self.num_large_crops :]]
+        #     for k in gps_outs[0].keys():
+        #         outs[k] = outs.get(k, []) + [out[k] for out in gps_outs]
 
         # loss and stats
         outs["loss"] = sum(outs["loss"]) / self.num_large_crops
@@ -590,7 +590,7 @@ class BaseMethod(pl.LightningModule):
             print('Loss became nan... exiting!')
             exit()
 
-        if self.knn_eval: # does not support gnnclr
+        if self.knn_eval: # does not support gps
             targets = targets.repeat(self.num_large_crops)
             mask = targets != -1
             self.knn(
