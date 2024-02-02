@@ -1,5 +1,5 @@
-# GPS-SSL: Guided Positive Sampling to Inject Prior into Self-Supervised Learning
-Repository for the "GPS-SSL: Guided Positive Sampling to Inject Prior into Self-Supervised Learning" Paper, submitted to ICLR 2024.
+# GPS: Guided Positive Sampling To Move Away From Data-Augmentation In SSL
+Repository for the "GPS: Guided Positive Sampling To Move Away From Data-Augmentation In SSL" Paper.
 
 ## General framework of GPS-SSL:
 
