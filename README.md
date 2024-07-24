@@ -1,5 +1,5 @@
-# GPS: Guided Positive Sampling To Move Away From Data-Augmentation In SSL
-Repository for the "GPS: Guided Positive Sampling To Move Away From Data-Augmentation In SSL" Paper. [download paper](paper.pdf)
+# GPS: Guided Positive Sampling in Self-Supervised Learning
+Repository for the "GPS: Guided Positive Sampling in Self-Supervised Learning" Paper. [download paper](paper.pdf)
 
 ## General framework of GPS-SSL:
 
