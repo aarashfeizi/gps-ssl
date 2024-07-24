@@ -1,5 +1,5 @@
 # GPS: Guided Positive Sampling in Self-Supervised Learning
-Repository for the "GPS: Guided Positive Sampling in Self-Supervised Learning" Paper. [download paper](paper.pdf)
+Repository for the "GPS: Guided Positive Sampling in Self-Supervised Learning" Paper.
 
 ## General framework of GPS-SSL:
 
